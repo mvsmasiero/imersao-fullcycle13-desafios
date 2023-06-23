@@ -17,6 +17,10 @@ export class OrdersService {
   }
 
   all() {
-    return this.prismaService.order.findMany();
+    return this.prismaService.order.findMany({
+      include: {
+        asset: true,
+      },
+    });
   }
 }
