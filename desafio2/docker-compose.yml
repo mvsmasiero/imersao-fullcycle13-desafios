@@ -4,10 +4,22 @@ services:
   mongodb:
     image: bitnami/mongodb:5.0.17
     environment:
-      - MONGODB_USERNAME=fullcycle
-      - MONGODB_PASSWORD=passwd
+      - MONGODB_ROOT_PASSWORD=passwd
       - MONGODB_DATABASE=desafio2
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_REPLICA_SET_KEY=123456
     volumes:
-      - ./data/mongo:/bitnami/mongodb
+      - mongodb_data:/bitnami/mongodb
     ports:
       - 27017:27017
+  
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+  
+volumes:
+  mongodb_data:
+    driver: local
