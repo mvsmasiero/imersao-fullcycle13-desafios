@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mongodb:
+    image: bitnami/mongodb:5.0.17
+    environment:
+      - MONGODB_USERNAME=fullcycle
+      - MONGODB_PASSWORD=passwd
+      - MONGODB_DATABASE=desafio2
+    volumes:
+      - ./data/mongo:/bitnami/mongodb
+    ports:
+      - 27017:27017
